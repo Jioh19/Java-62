@@ -1,7 +1,0 @@
-package com.edutecno;
-
-public class EjerciciosArreglos2 {
-	public static void main(String[] args) {
-		int[] arreglo = {1 ,5 78, 3,45 ,41};
-	}
-}

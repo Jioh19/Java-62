@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+/home/jioh/Projects/Edutecno/Java-62/M5/.metadata/.plugins/org.eclipse.jdt.core
-2596372142.index
-4276921418.index
-1865797976.index
