@@ -1,0 +1,9 @@
+package com.edutecno;
+
+public class EjerciciosArreglos {
+	public static void main(String[] args) {
+		int[] miArreglo = { 123, 456, 4, 1, 465, 55, 7, 8, 69 };
+		
+		System.out.println(miArreglo[0]);
+	}
+}

@@ -1,0 +1,42 @@
+package com.edutecno;
+
+import java.util.Arrays;
+
+public class EjerciciosArreglos {
+	public static void main(String[] args) {
+		int[] miArreglo = { 123, 456, 4, 1, 465, 55, 7, 8, 69 };
+		
+		//System.out.println(miArreglo.length); //miArreglo.length me entrega el largo del arreglo
+		int total = 0;
+//		for(int i = 0; i < miArreglo.length; i++) {
+//			System.out.println(miArreglo[i]);
+//			total += miArreglo[i]; // total = total + i
+//		}	
+		
+//		for(int num: miArreglo) {
+//			System.out.println(num);
+//			total += num;
+//		}
+//		System.out.println("El total de los numeros es de " + total);
+		
+		Persona persona1 = new Persona("Juan", 43, "Oh");
+		Persona persona2 = new Persona("Marcelo", 25, "Toro");
+		Persona persona3 = new Persona("Fernando", 33, "Robledo");
+		
+		Persona[] personas = {persona1, persona2, persona3};
+		
+		for(int i = 0; i < personas.length; i++) {
+			System.out.println(personas[i]);
+		}
+		
+		double promedio = 0;
+		for(Persona persona: personas) {
+			promedio += persona.getEdad();
+		}
+		promedio /= personas.length;
+		
+		System.out.println("El promedio de edades es de: " + promedio);
+		
+		Arrays.stream(personas).forEach(persona -> System.out.println(persona));
+	}
+}

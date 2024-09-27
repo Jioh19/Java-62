@@ -1,0 +1,12 @@
+package com.edutecno;
+
+public class Arreglo {
+
+	public static void main(String[] args) {
+		int[] arregloInts;
+		Integer numero = 0;
+		System.out.println(numero);
+
+	}
+
+}
