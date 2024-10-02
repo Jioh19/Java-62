@@ -8,6 +8,7 @@ public class Persona {
 	private Item[] inventario;
 	private double capacidadCarga;
 	private double espacio;
+	private int next;
 	
 	public Persona(String nombre, Integer hp, double capacidadCarga, double espacio) {
 		super();
@@ -16,6 +17,7 @@ public class Persona {
 		this.capacidadCarga = capacidadCarga;
 		this.espacio = espacio;
 		this.inventario = new Item[20];
+		
 	}
 	
 	public double pesoTotal() {
