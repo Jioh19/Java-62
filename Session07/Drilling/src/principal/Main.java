@@ -52,6 +52,7 @@ Seleccione el producto a comprar
 		default:
 			System.out.println("Producto no encontrado");
 		}
+		sc.close();
 		
 	}
 	
