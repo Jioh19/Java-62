@@ -1,6 +1,6 @@
 package com.edutecno;
 
-public class Circulo extends Figura{
+public class Circulo extends Figura implements Variable{
 
 	private double radio;
 	
@@ -18,6 +18,12 @@ public class Circulo extends Figura{
 	@Override
 	public double calcularArea() {
 		return Math.PI * radio * radio;
+	}
+
+	@Override
+	public void modificar(double porcentaje) {
+		radio *= porcentaje;
+		
 	}
 
 }

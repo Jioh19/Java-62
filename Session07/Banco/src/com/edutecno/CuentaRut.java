@@ -1,13 +1,21 @@
 package com.edutecno;
 
-public class CuentaRut extends Cuenta{
+public class CuentaRut implements Cuenta{
 	private double totalDepositoMensual;
 	private double limite;
+	protected String numCuenta;
+	protected Cliente cliente;
+	protected double saldo;
 	
+	
+
 	public CuentaRut(String numCuenta, Cliente cliente) {
-		super(numCuenta, cliente);
-		totalDepositoMensual = 0;
-		limite = 3000000;
+		super();
+		this.numCuenta = numCuenta;
+		this.cliente = cliente;
+		this.saldo = 0;
+		this.totalDepositoMensual = 0;
+		this.limite = 3000000;
 	}
 
 	@Override

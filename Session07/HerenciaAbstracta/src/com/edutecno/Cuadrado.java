@@ -1,6 +1,6 @@
 package com.edutecno;
 
-public class Cuadrado extends Figura{
+public class Cuadrado extends Figura implements Variable{
 	private double lado;
 	
 	public Cuadrado(double lado) {
@@ -16,6 +16,11 @@ public class Cuadrado extends Figura{
 	@Override
 	public double calcularArea() {
 		return lado * lado;
+	}
+
+	@Override
+	public void modificar(double porcentaje) {
+		lado *= porcentaje; // 1 = 100%
 	}
 
 }

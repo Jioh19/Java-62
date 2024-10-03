@@ -6,7 +6,7 @@ public class Main {
 		CuentaCorriente cc = new CuentaCorriente("1111", juan);
 		CuentaRut cr = new CuentaRut("1112", juan);
 		cc.depositar(123456);
-		if(!cr.depositar(4000000)) {
+		if(!cr.depositar(2000000)) {
 			System.out.println("Hubo problemas depositando");
 		}
 		System.out.println(cr);

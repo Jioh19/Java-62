@@ -8,5 +8,4 @@ public abstract class Figura {
 	public String toString() {
 		return "Figura []";
 	}
-	
 }

@@ -1,10 +1,18 @@
 package com.edutecno;
 
-public class CuentaCorriente extends Cuenta{
+public class CuentaCorriente implements Cuenta{
+
+	protected String numCuenta;
+	protected Cliente cliente;
+	protected double saldo;
+	
+	
 
 	public CuentaCorriente(String numCuenta, Cliente cliente) {
-		super(numCuenta, cliente);
-		// TODO Auto-generated constructor stub
+		super();
+		this.numCuenta = numCuenta;
+		this.cliente = cliente;
+		this.saldo = 0;
 	}
 
 	@Override
