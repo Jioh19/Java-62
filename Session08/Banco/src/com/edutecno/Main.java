@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Cliente juan = new Cliente("Juan", "12345");
-	
+
 		Cuenta cta = crearCuenta(juan, "123456");
 		Cuenta[] cuentas = {cta, null, null, null, null};
 		juan.setCuentas(cuentas);
