@@ -17,7 +17,7 @@ public class ListaArreglo<T> {
 	private void crecer() {
 		if(size == arr.length) {
 			@SuppressWarnings("unchecked")
-			T[] nuevoArr = (T[]) new Object[arr.length * 2];
+			T[] nuevoArr = (T[]) new Object[(int) (arr.length * 1.5)];
 			System.arraycopy(arr, 0, nuevoArr, 0, size);
 			arr = nuevoArr;
  		}
@@ -36,6 +36,10 @@ public class ListaArreglo<T> {
 		return arr[index];
 	}
 	
+	public void remove(int index) {
+		System.arraycopy(arr, index + 1, arr, index, size - index - 1);
+		arr[--size] = null;
+	}
 
 	@Override
 	public String toString() {
