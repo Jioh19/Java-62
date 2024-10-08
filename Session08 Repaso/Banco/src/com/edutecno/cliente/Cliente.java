@@ -36,6 +36,46 @@ public class Cliente {
 		return "\nCliente [nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + 
 				"\ncuentas=" + Arrays.toString(cuentas) + ", nivel=" + nivel + "]";
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getRut() {
+		return rut;
+	}
+
+	public void setRut(String rut) {
+		this.rut = rut;
+	}
+
+	public Cuenta[] getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(Cuenta[] cuentas) {
+		this.cuentas = cuentas;
+	}
+
+	public Nivel getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
 	
 	
 }
