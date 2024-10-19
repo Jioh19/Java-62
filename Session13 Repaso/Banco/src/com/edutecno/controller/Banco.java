@@ -37,7 +37,7 @@ public class Banco {
 		return cuenta;
 	}
 
-	public ClienteService getClienteSerive() {
+	public ClienteService getClienteService() {
 		return clienteService;
 	}
 

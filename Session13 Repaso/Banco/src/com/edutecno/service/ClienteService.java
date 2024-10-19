@@ -23,4 +23,10 @@ public class ClienteService {
 	public void removeCliente(int index) {
 		clientes.remove(index);
 	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+	
+	
 }

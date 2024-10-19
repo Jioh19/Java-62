@@ -23,6 +23,7 @@ public class Main {
 		banco.getCuentaService().retirar(cuentaJuan, 500000);
 		banco.getCuentaService().transferir(cuentaJuan, cuentaMarcelo, 250000);
 		
+		banco.getClienteService().getClientes().stream().filter(c -> c.getNombre().equals("Juan")).forEach(System.out::println);	
 		System.out.println(banco);
 		CuentaRepository.imprimir(cuentaJuan);
 		//System.out.println(cuentaMarcelo);
