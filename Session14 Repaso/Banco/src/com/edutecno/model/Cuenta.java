@@ -3,6 +3,7 @@ package com.edutecno.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.edutecno.excepciones.CuentaException;
 import com.edutecno.service.TransaccionService;
 
 public abstract class Cuenta {
@@ -19,8 +20,8 @@ public abstract class Cuenta {
 		transaccionService = new TransaccionService(new ArrayList<>());
 	}
 	
-	public abstract boolean depositar(double deposito);
-	public abstract boolean retirar(double retiro);
+	public abstract void depositar(double deposito) throws CuentaException;
+	public abstract void retirar(double retiro) throws CuentaException;
 	public abstract boolean canDepositar(double deposito);
 	public abstract boolean canRetirar(double retiro);
 

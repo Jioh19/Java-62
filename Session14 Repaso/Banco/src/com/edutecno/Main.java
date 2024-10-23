@@ -3,6 +3,7 @@ package com.edutecno;
 import java.util.Random;
 
 import com.edutecno.controller.Banco;
+import com.edutecno.excepciones.CuentaException;
 import com.edutecno.model.Cliente;
 import com.edutecno.model.Cuenta;
 import com.edutecno.model.CuentaCorriente;
@@ -18,10 +19,17 @@ public class Main {
 		Cuenta cuentaJuan = banco.crearCuenta(juan);
 		Cuenta cuentaMarcelo = banco.crearCuenta(marcelo);
 		
-		banco.getCuentaService().depositar(cuentaJuan, 1000000);
-		banco.getCuentaService().depositar(cuentaMarcelo, 2000000);
-		banco.getCuentaService().retirar(cuentaJuan, 500000);
-		banco.getCuentaService().transferir(cuentaJuan, cuentaMarcelo, 250000);
+		try {
+			Cuenta juancho = banco.getCuentaService().getCuenta(0);
+			juancho.depositar(1000000);
+			banco.getCuentaService().depositar(cuentaMarcelo, 2000000);
+			banco.getCuentaService().retirar(cuentaJuan, 500000);
+			banco.getCuentaService().transferir(cuentaJuan, cuentaMarcelo, 250000);			
+		} catch(CuentaException e) {
+			System.out.println("Operacion fallida " + e);
+		} catch(Exception e) {
+			System.out.println("Error " +e );
+		}
 		
 		banco.getClienteService().getClientes().stream().filter(c -> c.getNombre().equals("Juan")).forEach(System.out::println);	
 		System.out.println(banco);

@@ -1,5 +1,7 @@
 package com.edutecno.model;
 
+import com.edutecno.excepciones.CuentaException;
+
 public class CuentaCorriente extends Cuenta {
 	private double topeMaximo;
 	private double depositoActual;
@@ -11,22 +13,21 @@ public class CuentaCorriente extends Cuenta {
 	}
 
 	@Override
-	public boolean depositar(double deposito) {
+	public void depositar(double deposito) throws CuentaException {
 		if (topeMaximo < depositoActual + deposito) {
-			return false;
+			throw new CuentaException("Error en deposito");
 		}
 		saldo += deposito;
 		depositoActual += deposito;
-		return true;
+		
 	}
 
 	@Override
-	public boolean retirar(double retiro) {
+	public void retirar(double retiro) throws CuentaException {
 		if (saldo < retiro) {
-			return false;
+			throw new CuentaException("Error en retiro");
 		}
 		saldo -= retiro;
-		return true;
 	}
 
 	@Override

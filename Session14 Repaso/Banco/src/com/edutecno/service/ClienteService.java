@@ -2,6 +2,7 @@ package com.edutecno.service;
 
 import java.util.List;
 
+import com.edutecno.excepciones.ClienteException;
 import com.edutecno.model.Cliente;
 
 public class ClienteService {
@@ -28,5 +29,13 @@ public class ClienteService {
 		return clientes;
 	}
 	
+	public Cliente getCliente(int index) throws ClienteException {
+		
+		Cliente cliente = clientes.get(index);
+		if(cliente == null) {
+			throw new ClienteException("Error, cliente no encontrado");
+		}
+		return cliente;
+	}
 	
 }

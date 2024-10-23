@@ -1,0 +1,3 @@
+
+Transaccion [monto=500000.0, fecha=2024-10-22T21:00:33.272760988, tipo=RETIRO]
+Transaccion [monto=250000.0, fecha=2024-10-22T21:00:33.272770048, tipo=TRANSFERENCIA, origen=721549, destino=689361]
