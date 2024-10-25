@@ -1,7 +1,10 @@
 package app;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -14,44 +17,59 @@ import model.PokeResponse;
 import model.PokemonResponse;
 
 public class Main {
+    private static final String API_URL = "https://pokeapi.co/api/v2/pokemon/?limit=1300";
+    private static final Client client = ClientBuilder.newClient();
+    private static final Map<String, Move> moveCache = new HashMap<>();
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		final String API_URL = "https://pokeapi.co/api/v2/pokemon/?limit=5";
-		
-		long start = System.nanoTime();
-		Map<String, Move> movimientos = new HashMap<>();
-		
-		Client client = ClientBuilder.newClient();
-		
-		WebTarget target = client.target(API_URL);
-		Response response1 = target.request(MediaType.APPLICATION_JSON).get();
-		PokeResponse pokeResponse = response1.readEntity(PokeResponse.class);
+    public static void main(String[] args) {
+        long start = System.nanoTime();
+        
+        PokeResponse pokeResponse = fetchFromApi(API_URL, PokeResponse.class);
+        
+        List<CompletableFuture<PokemonResponse>> pokemonFutures = pokeResponse.results().stream()
+            .map(pokemon -> CompletableFuture.supplyAsync(() -> fetchPokemonDetails(pokemon.url())))
+            .collect(Collectors.toList());
+        
 
-		for(model.Response response: pokeResponse.results()) {
-			//System.out.println(response.url());
-			target = client.target(response.url());
-			Response response2 = target.request(MediaType.APPLICATION_JSON).get();
-			PokemonResponse pokemonResponse = response2.readEntity(PokemonResponse.class);
-			
-			for(Moves move: pokemonResponse.moves()) {
-			//	System.out.println(move.move().url());
-				
-				//Move movePower = movimientos.get(move.move().url());
+        CompletableFuture.allOf(pokemonFutures.toArray(new CompletableFuture[0])).join();
+        
+        long end = System.nanoTime();
+        System.out.println("Tiempo: " + (end - start) / 1000000000 + " segundos");
+        
 
-			//	if(movePower == null) {
-					target = client.target(move.move().url());
-					Response response3 = target.request(MediaType.APPLICATION_JSON).get();
-					Move movePower = response3.readEntity(Move.class);
-				//	movimientos.put(move.move().url(), movePower);
-			//	}
-				
-				System.out.println(movePower.name() +  " " + movePower.power());
-				
-			}
-		}
-		long end = System.nanoTime();
-		System.out.println(end-start);
-	}
-//9634788241
+        client.close();
+    }
+    
+    private static PokemonResponse fetchPokemonDetails(String url) {
+        PokemonResponse pokemon = fetchFromApi(url, PokemonResponse.class);
+        
+        List<CompletableFuture<Void>> moveFutures = pokemon.moves().stream()
+            .map(move -> CompletableFuture.runAsync(() -> fetchMoveDetails(move)))
+            .collect(Collectors.toList());
+        
+        CompletableFuture.allOf(moveFutures.toArray(new CompletableFuture[0])).join();
+        
+        return pokemon;
+    }
+    
+    private static void fetchMoveDetails(Moves move) {
+        synchronized (moveCache) {
+        	Move moveDetails = moveCache.get(move.move().url());
+            if (moveDetails == null) {
+                moveDetails = fetchFromApi(move.move().url(), Move.class);
+                moveCache.put(move.move().url(), moveDetails);
+                System.out.println(moveDetails.name() + " " + moveDetails.power());
+            } else {
+                System.out.println(moveDetails.name() + " " + moveDetails.power() + " Cached!!!");
+            }
+        }
+    }
+    
+    private static <T> T fetchFromApi(String url, Class<T> responseType) {
+        WebTarget target = client.target(url);
+        Response response = target.request(MediaType.APPLICATION_JSON).get();
+        T result = response.readEntity(responseType);
+        response.close();
+        return result;
+    }
 }
