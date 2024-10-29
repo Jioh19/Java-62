@@ -6,6 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record PokemonResponse(List<Moves> moves) {
+public record PokemonResponse(List<Moves> moves, String name) {
 
 }
