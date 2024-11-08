@@ -1,0 +1,2 @@
+id=001, fecha=2024-11-07, cliente=15335, ventas={codigo=001, nombre=Camisa, categoria=HOMBRE, talla=M, precio=8000.0, stock=200=10, codigo=002, nombre=Polera, categoria=HOMBRE, talla=M, precio=5000.0, stock=200=5}, descuento=0.1
+id=002, fecha=2024-11-07, cliente=17852, ventas={codigo=001, nombre=Camisa, categoria=HOMBRE, talla=M, precio=8000.0, stock=200=1, codigo=002, nombre=Polera, categoria=HOMBRE, talla=M, precio=5000.0, stock=200=50}, descuento=0.15

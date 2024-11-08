@@ -3,6 +3,7 @@ package com.edutecno.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import com.edutecno.excepciones.CuentaException;
+import com.edutecno.model.Cliente;
 import com.edutecno.model.Cuenta;
 import com.edutecno.model.CuentaCorriente;
 
@@ -20,6 +22,7 @@ class CuentaServiceTestMockito {
 	
 	Cuenta c1 = mock(CuentaCorriente.class);
 	Cuenta c2 = new CuentaCorriente("123456", mock(Cliente.class));
+	Cuenta spyC2 = spy(c2);
 	
 	private static CuentaService service;
 	private static List<Cuenta> cuentas;
@@ -59,10 +62,11 @@ class CuentaServiceTestMockito {
 		}
 	}
 
-//	@Test
-//	void testRetirar() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	void testRetirar() {
+		spyC2.canRetirar(200);
+		when(spyC2.canRetirar(200.0)).thenReturn(true);
+	}
 //
 //	@Test
 //	void testTransferir() {
