@@ -2,61 +2,77 @@ package com.edutecno.vistas;
 
 import java.util.Scanner;
 
+import com.edutecno.servicios.ClienteService;
+import com.edutecno.servicios.ProductoService;
+import com.edutecno.servicios.VentaService;
+
 public class Menu extends MenuTemplate {
 
 	private Scanner sc;
+	private ProductoService productoService;
+	private ClienteService clienteService;
+	private VentaService ventaService;
 	
 	
 	public Menu() {
 		super();
 		sc = new Scanner(System.in);
+		productoService = new ProductoService();
+		clienteService = new ClienteService();
+		ventaService = new VentaService();
 	}
 
 	@Override
 	public void crearProducto() {
 		System.out.println("Creando producto");
+		productoService.agregarProducto();
 
 	}
 
 	@Override
 	public void crearCliente() {
-		System.out.println("Creando cliente");
+        System.out.println("Creando cliente");
+        clienteService.agregarCliente();
+        
 
 	}
 
 	@Override
 	public void crearVenta() {
 		System.out.println("Creando Venta");
+		ventaService.agregarVenta(productoService, clienteService);
 
 	}
 
 	@Override
 	public void exportarDatos() {
-		// TODO Auto-generated method stub
+		productoService.guardarProductos();
+		clienteService.guardarClientes();
 
 	}
 
 	@Override
 	public void importarDatos() {
-		// TODO Auto-generated method stub
+		productoService.cargarProductos();
+		clienteService.cargarClientes();
 
 	}
 
 	@Override
 	public void mostrarProductos() {
-		// TODO Auto-generated method stub
+		productoService.mostrarProductos();
 
 	}
 
 	@Override
 	public void mostrarClientes() {
-		// TODO Auto-generated method stub
+		clienteService.mostrarCliente();
 
 	}
 
 	@Override
 	public void mostrarVentas() {
-		// TODO Auto-generated method stub
+		ventaService.mostrarVentas();
 
 	}
 

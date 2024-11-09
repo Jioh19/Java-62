@@ -1,2 +1,3 @@
 id=17852, nombre=Marcelo, apellido=Toro, direccion=Vitacura 321, telefono=987654, email=marcelo@mail.com
+id=456, nombre=Diego, apellido=Escurra, direccion=Vitacura 123, telefono=987456, email=diego@mail.com
 id=15335, nombre=Juan, apellido=Oh, direccion=Meiggs 123, telefono=123456, email=jioh@mail.com
