@@ -30,8 +30,10 @@ public class VentaService {
 		String id = sc.next();
 		System.out.println("Ingrese fecha");
 		LocalDate fecha = LocalDate.parse(sc.next());
+		clienteService.mostrarCliente();
 		System.out.println("Ingrese Id de cliente");
 		String idCliente = sc.next();
+		
 		Cliente cliente = clienteService.obtenerCliente(idCliente);
 		System.out.println("Ingrese productos");
 		Map<Producto, Integer> ventas = new HashMap<>();
@@ -73,5 +75,9 @@ public class VentaService {
 			System.out.println("Para salir ingrese 0");
 			continuar = sc.nextInt();
 		} while(continuar != 0);
+	}
+	
+	public void cargarVentas() {
+		Util.loadVentas(ventas, "ventas.txt", clienteService, productoService);
 	}
 }

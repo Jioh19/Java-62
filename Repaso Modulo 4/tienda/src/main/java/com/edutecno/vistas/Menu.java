@@ -1,6 +1,9 @@
 package com.edutecno.vistas;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.management.InstanceAlreadyExistsException;
 
 import com.edutecno.servicios.ClienteService;
 import com.edutecno.servicios.ProductoService;
@@ -19,14 +22,18 @@ public class Menu extends MenuTemplate {
 		sc = new Scanner(System.in);
 		productoService = new ProductoService();
 		clienteService = new ClienteService();
-		ventaService = new VentaService();
+		ventaService = new VentaService(productoService, clienteService);
 	}
 
 	@Override
 	public void crearProducto() {
 		System.out.println("Creando producto");
-		productoService.agregarProducto();
-
+			try {
+				productoService.agregarProducto();
+			} catch (InstanceAlreadyExistsException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Error al Crear el producto");
+			}
 	}
 
 	@Override
@@ -40,7 +47,7 @@ public class Menu extends MenuTemplate {
 	@Override
 	public void crearVenta() {
 		System.out.println("Creando Venta");
-		ventaService.agregarVenta(productoService, clienteService);
+		ventaService.agregarVenta();
 
 	}
 
@@ -48,14 +55,14 @@ public class Menu extends MenuTemplate {
 	public void exportarDatos() {
 		productoService.guardarProductos();
 		clienteService.guardarClientes();
-
+		ventaService.guardarVentas();
 	}
 
 	@Override
 	public void importarDatos() {
 		productoService.cargarProductos();
 		clienteService.cargarClientes();
-
+		ventaService.cargarVentas();
 	}
 
 	@Override
@@ -82,8 +89,11 @@ public class Menu extends MenuTemplate {
 		//while(true) {}
 		//for(;true;) {}
 		int eleccion;
+		boolean continuar = true;
 		do {
-			String menu = """
+			try {
+				
+				String menu = """
 				****************************************
 				* 1- Crear Producto                    *
 				* 2- Crear Cliente                     *
@@ -95,42 +105,47 @@ public class Menu extends MenuTemplate {
 				* 8- Importar Datos                    *
 				* 0- Salir                             *
 				****************************************""";
-			System.out.println(menu);
-			eleccion = sc.nextInt();
-			switch(eleccion) {
-			case 1: 
-				crearProducto();
-				break;
-			case 2:
-				crearCliente();
-				break;
-			case 3: 
-				crearVenta();
-				break;
-			case 4: 
-				mostrarProductos();
-				break;
-			case 5:
-				mostrarClientes();
-				break;
-			case 6: 
-				mostrarVentas();
-				break;
-			case 7:
-				exportarDatos();
-				break;
-			case 8: 
-				importarDatos();
-				break;
-			case 0:
-				System.out.println("Gracias por utilizar la app tienda");
-				break;
-			default:
-				System.out.println("Ingrese una opción válida");
-				break;
+				System.out.println(menu);
+				eleccion = sc.nextInt();
+				switch(eleccion) {
+				case 1: 
+					crearProducto();
+					break;
+				case 2:
+					crearCliente();
+					break;
+				case 3: 
+					crearVenta();
+					break;
+				case 4: 
+					mostrarProductos();
+					break;
+				case 5:
+					mostrarClientes();
+					break;
+				case 6: 
+					mostrarVentas();
+					break;
+				case 7:
+					exportarDatos();
+					break;
+				case 8: 
+					importarDatos();
+					break;
+				case 0:
+					System.out.println("Gracias por utilizar la app tienda");
+					continuar = false;
+					break;
+				default:
+					System.out.println("Ingrese una opción válida");
+					break;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Ingrese una elección válida");
+				sc.next();
 			}
 			
-		} while(eleccion != 0);
+		} while(continuar);
 	}
 
 }
