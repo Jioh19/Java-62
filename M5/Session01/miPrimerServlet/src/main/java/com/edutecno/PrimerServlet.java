@@ -1,5 +1,6 @@
 package com.edutecno;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,7 +32,11 @@ public class PrimerServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter write =response.getWriter();
 		String nombre = request.getParameter("nombre");
-		var edad = Integer.parseInt(request.getParameter("edad"));
+		String edadStr = request.getParameter("edad");
+		int edad = 0;
+		if(edadStr != null && edadStr != "") {
+			edad = Integer.parseInt(request.getParameter("edad"));
+		}
 //		String html = """
 //				<html>
 //					<body>
@@ -55,6 +60,11 @@ public class PrimerServlet extends HttpServlet {
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
 		System.out.println(nombre);
+		System.out.println(apellido);
+		System.out.println(direccion);
+//		RequestDispatcher rd = request.getRequestDispatcher("/nextServlet");
+//		rd.forward(request, response);
+		request.getRequestDispatcher("/nextServlet").forward(request, response);
 		//var edad = Integer.parseInt(request.getParameter("edad"));
 		//doGet(request, response);
 	}
