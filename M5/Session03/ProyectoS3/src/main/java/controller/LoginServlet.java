@@ -70,9 +70,13 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("productos", productoRepository.getAll());
 				request.getRequestDispatcher("productos.jsp").forward(request, response);
 				//response.sendRedirect("productos.jsp");
+			} else {
+				response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Credenciales inválidas");
 			}
-		} 
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Credenciales inválidas");
+		} else {
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Credenciales inválidas");
+			
+		}
 	}
 
 }

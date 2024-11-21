@@ -50,6 +50,7 @@ public class CarritoServlet extends HttpServlet {
 					String id = cookie.getName();
 					Integer val = Integer.parseInt(cookie.getValue());
 					carro.put(id, val);	
+					System.out.println(cookie.getPath());
 				}
 			}
 		}
