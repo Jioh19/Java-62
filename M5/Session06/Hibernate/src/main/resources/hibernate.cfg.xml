@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="hibernate.connection.driver_class">
+			oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.url">
+			jdbc:oracle:thin:@//localhost:1521/FREEPDB1</property>
+		<property name="hibernate.connection.username">JIOH</property>
+		<property name="hibernate.connection.password">1160</property>
+
+		<property name="hibernate.connection.autocommit">true</property>
+
+		<!-- JDBC connection pool -->
+		<property name="hibernate.connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+
+		<!-- Session context -->
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<!-- Show SQL -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+
+		<!-- Schema management -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<!-- Entity mapping -->
+		<mapping class="entidades.Curso" />
+	</session-factory>
+</hibernate-configuration>
