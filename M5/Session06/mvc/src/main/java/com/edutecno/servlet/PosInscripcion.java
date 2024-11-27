@@ -44,6 +44,9 @@ public class PosInscripcion extends HttpServlet {
 		}
 // el resultado lo adjunto como atributo en el request
 		request.setAttribute("idInsc", idInsc);
+		request.setAttribute("dto", dto);
+	
+		
 // redirecciono el control hacia la siguiente vista,
 // es decir: hacia su servlet de pre-confirmacion
 		request.getRequestDispatcher("/preConfirmacion").forward(request, response);
