@@ -487,7 +487,8 @@ List<Empleado> empleados = (List<Empleado>) request.getAttribute("empleados");
 											<td><%=empleado.getNumDepto()%></td>
 											<td>
 												<form method="get" action="creaEmpleado">
-													<input type="hidden" value="<%= empleado.getNumEmpleado()%>" name="id"/>
+													<input type="hidden" value="<%=empleado.getNumEmpleado()%>"
+														name="id" />
 													<button type="submit" class="btn btn-danger">Borrar</button>
 												</form>
 											</td>
