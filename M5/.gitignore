@@ -3,7 +3,6 @@
 ##############################
 .mtj.tmp/
 *.class
-*.jar
 *.war
 *.ear
 *.nar
@@ -91,3 +90,5 @@ nb-configuration.xml
 enunciado*.*
 *.kate*
 *.pdf
+
+.fake
