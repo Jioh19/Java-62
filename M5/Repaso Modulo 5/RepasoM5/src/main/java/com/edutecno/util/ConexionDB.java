@@ -13,8 +13,8 @@ public class ConexionDB {
 
 	// EJEMPLO DE CONEXION SIN SINGLETON
 	protected Connection generaConexion() {
-		String usr = "JIOH";
-		String pwd = "1160";
+		String usr = System.getenv("USER");
+		String pwd = System.getenv("CLAVE_DB");
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521/FREEPDB1";
 		if (conn == null) {

@@ -7,23 +7,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.edutecno.model.Usuario;
-import com.edutecno.service.LoginService;
-import com.edutecno.service.UsuarioService;
+import com.edutecno.service.ProductoService;
 
 /**
- * Servlet implementation class CrearUsuario
+ * Servlet implementation class EliminarProducto
  */
-@WebServlet("/crearUsuario")
-public class CrearUsuario extends HttpServlet {
+@WebServlet("/eliminarProducto")
+public class EliminarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    LoginService usuarioService;
+    ProductoService productoService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CrearUsuario() {
+    public EliminarProducto() {
         super();
-        usuarioService = new LoginService();
+        productoService = new ProductoService();
         // TODO Auto-generated constructor stub
     }
 
@@ -32,7 +30,9 @@ public class CrearUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int id = Integer.parseInt(request.getParameter("id"));
+		productoService.eliminarProducto(id);
+		request.getRequestDispatcher("listarProductos").forward(request, response);
 	}
 
 	/**
@@ -40,13 +40,7 @@ public class CrearUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		Usuario usuario = new Usuario(nombre, apellido, username, password);
-		usuarioService.crearUsuario(usuario);
+		doGet(request, response);
 	}
 
 }

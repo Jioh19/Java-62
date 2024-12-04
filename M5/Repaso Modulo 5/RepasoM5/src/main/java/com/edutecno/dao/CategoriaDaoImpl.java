@@ -42,6 +42,17 @@ public class CategoriaDaoImpl extends ConexionDB implements Dao<Categoria>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Categoria getByNombre(String nombre) {
+		
+		List<Categoria> categorias = getAll();
+		for(Categoria cat: categorias) {
+			if(cat.getNombre().equals(nombre)) {
+				return cat;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public void save(Categoria t) {

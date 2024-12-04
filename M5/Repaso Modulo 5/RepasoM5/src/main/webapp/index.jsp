@@ -14,7 +14,7 @@ String username = (String) usuario.getAttribute("username");
 	<h1>
 		Bienvenido!
 		<%=username%></h1>
-	<li><a href="productos">mostrar productos html</a></li>
+	<li><a href="listarProductos">mostrar productos</a></li>
 	<li><a href="login.jsp">login</a></li>
 	<li><a href="logout">logout</a></li>
 	<li><a href="agregar.jsp">Agregar Usuario</a></li>

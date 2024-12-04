@@ -5,25 +5,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
-import com.edutecno.model.Usuario;
-import com.edutecno.service.LoginService;
-import com.edutecno.service.UsuarioService;
-
 /**
- * Servlet implementation class CrearUsuario
+ * Servlet implementation class Logout
  */
-@WebServlet("/crearUsuario")
-public class CrearUsuario extends HttpServlet {
+@WebServlet("/logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    LoginService usuarioService;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CrearUsuario() {
+    public Logout() {
         super();
-        usuarioService = new LoginService();
         // TODO Auto-generated constructor stub
     }
 
@@ -31,8 +28,12 @@ public class CrearUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			session.invalidate();
+			
+		}
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
 	}
 
 	/**
@@ -40,13 +41,7 @@ public class CrearUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		Usuario usuario = new Usuario(nombre, apellido, username, password);
-		usuarioService.crearUsuario(usuario);
+		doGet(request, response);
 	}
 
 }

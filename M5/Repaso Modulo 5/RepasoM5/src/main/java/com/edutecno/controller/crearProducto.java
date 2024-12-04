@@ -7,23 +7,26 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.edutecno.model.Usuario;
-import com.edutecno.service.LoginService;
-import com.edutecno.service.UsuarioService;
+import com.edutecno.model.Producto;
+import com.edutecno.service.CategoriaService;
+import com.edutecno.service.ProductoService;
 
 /**
- * Servlet implementation class CrearUsuario
+ * Servlet implementation class crearProducto
  */
-@WebServlet("/crearUsuario")
-public class CrearUsuario extends HttpServlet {
+@WebServlet("/crearProducto")
+public class crearProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    LoginService usuarioService;
+	private CategoriaService categoriaService;
+	private ProductoService productoService;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CrearUsuario() {
+    public crearProducto() {
         super();
-        usuarioService = new LoginService();
+        categoriaService = new CategoriaService();
+        productoService = new ProductoService();
         // TODO Auto-generated constructor stub
     }
 
@@ -39,14 +42,17 @@ public class CrearUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String categoria = request.getParameter("categoria");
 		
-		Usuario usuario = new Usuario(nombre, apellido, username, password);
-		usuarioService.crearUsuario(usuario);
+		Producto producto = new Producto();
+		producto.setIdProducto(id);
+		producto.setNombre(nombre);
+		producto.setCategoria(categoriaService.obtenerCategoriaPorNombre(categoria));
+		productoService.guardarProducto(producto);
+		request.getRequestDispatcher("listarProductos").forward(request, response);
+
 	}
 
 }
