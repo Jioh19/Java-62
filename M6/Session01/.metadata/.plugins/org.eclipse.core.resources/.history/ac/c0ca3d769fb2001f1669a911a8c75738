@@ -1,0 +1,21 @@
+package main;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@AllArgsConstructor
+@Data
+public class Profesor {
+	ICalculadora calculadora;
+	
+	public void mostrarAlumnosConPromedios() {
+		System.out.println("Notas Calculadora 1");
+		calculadora.calularPromedios().forEach((alumno) -> {
+			System.out.println(alumno.getNombre() + ": " + alumno.getPromedio());
+		});
+		System.out.println("Notas Calculadora 2");
+		calculadora2.calularPromedios().forEach((alumno) -> {
+			System.out.println(alumno.getNombre() + ": " + alumno.getPromedio());
+		});
+	}
+}

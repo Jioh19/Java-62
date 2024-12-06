@@ -1,0 +1,5 @@
+package miPrimerProyectoMaven;
+
+public interface HerramientaParaCortarMadera {
+
+}

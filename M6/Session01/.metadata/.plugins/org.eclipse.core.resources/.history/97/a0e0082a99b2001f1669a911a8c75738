@@ -1,0 +1,9 @@
+package main;
+
+public class Profesor {
+	ICalculadora calculadora;
+	
+	public void mostrarAlumnosConPromedios() {
+		
+	}
+}

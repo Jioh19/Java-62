@@ -1,0 +1,18 @@
+package main;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Data
+public class Calculadora2 implements ICalculadora{
+
+	List<Alumno> alumnos;
+	@Override
+	public List<Alumno> calularPromedios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

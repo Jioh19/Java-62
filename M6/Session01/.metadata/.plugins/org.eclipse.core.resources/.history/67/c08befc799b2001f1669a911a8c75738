@@ -1,0 +1,28 @@
+package main;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Calculadora implements ICalculadora{
+	
+	List<Alumno> alumnos;
+	@Override
+	public List<Alumno> calularPromedios() {
+		for(Alumno alumno: alumnos) {
+			int total = 0;
+			for(int i = 0; i < alumno.getNotas().size(); i++) {
+				total += alumno.getNotas().get(i);
+			}
+			alumno.setPromedio(total / alumno.getNotas().size());
+			System.out.println(alumno);
+		}
+		return null;
+	}
+
+}

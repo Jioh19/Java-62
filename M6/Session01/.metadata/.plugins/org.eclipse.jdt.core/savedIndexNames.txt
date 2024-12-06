@@ -1,0 +1,21 @@
+INDEX VERSION 1.134+/home/jioh/Projects/Edutecno/Java-62/Clases/M6/.metadata/.plugins/org.eclipse.jdt.core
+2179428016.index
+3968629205.index
+1239500232.index
+1863405214.index
+2984188702.index
+408373109.index
+1432260180.index
+32653638.index
+3225360818.index
+1256291815.index
+1939745473.index
+1389501453.index
+2950953107.index
+1865797976.index
+2002729128.index
+966424854.index
+7630120.index
+1385658430.index
+1061084003.index
+2629589613.index

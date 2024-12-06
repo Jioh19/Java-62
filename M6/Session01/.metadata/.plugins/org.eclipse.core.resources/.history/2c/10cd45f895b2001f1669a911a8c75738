@@ -1,0 +1,8 @@
+package miPrimerProyectoMaven;
+
+
+
+public class Carpintero {
+	private String nombre;
+	
+}
