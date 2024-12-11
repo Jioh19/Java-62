@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ <form th:if="${ingresado==null || !ingresado}" class="form"
+method="GET" th:action="@{/ingresarforma}">
+ <input name="nombre" type="text" placeholder="Nombre de Forma">
+ <br>
+ <input name="numero" type="number" placeholder="Numero de Forma">
+ <br>
+ <input type="submit">
+ </form>
+ <p th:if="${ingresado!=null && ingresado}"> Se ha ingresado
+correctamente <a href="/">ingresar nueva forma</a> </p>
+ <p th:if="${ingresado!=null && !ingresado}"> No se ha
+ingresado la forma </p>
+</body>
+</html>
