@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -27,7 +29,9 @@ public class Cuenta {
 	@JoinColumn(name = "CLIENTE_RUT", nullable = false)
 	private Cliente cliente;
 	
+	@OneToMany(mappedBy = "origen", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Transferencia> transferenciasOrigen;
 
-	@OneToMany(mappedBy = "transferencia", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Transferencia> transferencias;
+	@OneToMany(mappedBy = "destino", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Transferencia> transferenciasDestino;
 }

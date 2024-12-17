@@ -31,6 +31,7 @@ public class TransferenciaService {
 		destino.setSaldo(destino.getSaldo() + transferencia.getMonto());
 		
 		transferenciaRepository.save(transferencia);
-		
+		cuentaService.agregarCuenta(origen);
+		cuentaService.agregarCuenta(destino);
 	}
 }

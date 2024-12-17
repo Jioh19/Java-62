@@ -17,10 +17,11 @@ public class Transferencia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CUENTA_ID", nullable = false)
+	@JoinColumn(name = "CUENTA_ORIGEN_ID", nullable = false)
 	private Cuenta origen;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CUENTA_ID", nullable = false)
+	@JoinColumn(name = "CUENTA_DESTINO_ID", nullable = false)
 	private Cuenta destino;
 	private Integer monto;
 }
