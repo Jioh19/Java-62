@@ -24,7 +24,6 @@ public class ClienteService {
 	}
 	
 	public Cliente encontrarPorRut(String rut) {
-		//return clienteRepository.findByRut(rut);
-		return null;
+		return clienteRepository.findByRut(rut);
 	}
 }

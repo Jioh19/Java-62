@@ -15,11 +15,18 @@ public class CuentaService {
 	CuentaRepository cuentaRepository;
 	
 	public List<Cuenta> obtenerTodos() {
-		//return cuentaRepository.findAll();
-		return null;
+		return cuentaRepository.findAll();
 	}
 	
 	public void agregarCuenta(Cuenta cuenta) {
-		//cuentaRepository.save(cuenta);
+		cuentaRepository.save(cuenta);
+	}
+	
+	public Cuenta buscarPorId(Integer id) {
+		return cuentaRepository.findById(id);
+	}
+	
+	public void actualizarSaldo(Cuenta cuenta) {
+		cuentaRepository.updateSaldo(cuenta);
 	}
 }

@@ -28,6 +28,7 @@ public class CuentaController {
 	public String obtenerCuentas(Model model) {
 		List<Cuenta> cuentas = cuentaService.obtenerTodos();
 		model.addAttribute("cuentas", cuentas);
+		System.out.println(cuentas);
 		return "cuentas";
 	}
 	

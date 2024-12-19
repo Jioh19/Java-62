@@ -12,7 +12,7 @@ import com.edutecno.bancoSpring.model.Transferencia;
 import jakarta.transaction.Transactional;
 
 @Service
-@Transactional
+
 public class TransferenciaService {
 
 	@Autowired
@@ -21,18 +21,20 @@ public class TransferenciaService {
 	CuentaService cuentaService;
 	
 	public List<Transferencia> obtenerTodo() {
-		//return transferenciaRepository.findAll();
-		return null;
+		return transferenciaRepository.findAll();
 	}
 	
 
-	
+	@Transactional
 	public void ejecutarTransferencia(Transferencia transferencia, Cuenta origen, Cuenta destino) {
-//		origen.setSaldo(origen.getSaldo() - transferencia.getMonto());
-//		destino.setSaldo(destino.getSaldo() + transferencia.getMonto());
-//		
-//		transferenciaRepository.save(transferencia);
-//		cuentaService.agregarCuenta(origen);
-//		cuentaService.agregarCuenta(destino);
+		if(origen.getSaldo() < transferencia.getMonto()) {
+			throw new RuntimeException("Saldo Insuficiente");
+		}
+		origen.setSaldo(origen.getSaldo() - transferencia.getMonto());
+		destino.setSaldo(destino.getSaldo() + transferencia.getMonto());
+		
+		transferenciaRepository.save(transferencia);
+		cuentaService.actualizarSaldo(origen);
+		cuentaService.actualizarSaldo(destino);
 	}
 }

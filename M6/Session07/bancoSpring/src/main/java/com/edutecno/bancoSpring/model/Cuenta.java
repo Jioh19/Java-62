@@ -18,18 +18,7 @@ import lombok.Data;
 
 @Data
 public class Cuenta {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer saldo;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CLIENTE_RUT", nullable = false)
 	private Cliente cliente;
-	
-	@OneToMany(mappedBy = "origen", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Transferencia> transferenciasOrigen;
-
-	@OneToMany(mappedBy = "destino", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Transferencia> transferenciasDestino;
 }
