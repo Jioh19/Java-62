@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- CSS file -->
+<link th:href="@{css/exitoCss.css}" href="../css/exitoCss.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.mi
+n.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.
+js"></script>
+<title>Inscripción</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="jumbotron" style="margin: 24% 0% 0% 0%;">
+				<h1 class="display-4">¡Bienvenido!</h1>
+				<p class="lead">Si estas viendo este mensaje te has inscrito
+					correctamente.</p>
+				<hr class="my-4">
+				<p th:inline="text">
+					<b>Usuario:</b> <span th:inline="text">[[${usuario.getUsername}]]</span>
+					<span th:inline="text">[[${usuario.getPassword}]]</span> <span
+						th:inline="text">[[${usuario.getEmail}]]</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

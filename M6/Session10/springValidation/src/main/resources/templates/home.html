@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<!-- CSS file -->
+<link th:href="@{/css/homeCss.css}" href="../css/homeCss.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.mi
+n.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.
+js"></script>
+<title>Inscripción</title>
+</head>
+<body>
+	<form method="post" th:object="${usuario}" th:action="@{/add}"
+		style="border: 1px solid rgb(184, 184, 184); margin: 5% 25% 0% 25%;">
+		<div class="container" style="width: 94%; margin: 5% 0% 1% 4%;">
+			<h1>Inscripción</h1>
+			<p>Para crear una cuenta debe primero llenar los siguientes
+				campos.</p>
+			<hr>
+			<div>
+				<label th:for="username"><b>Nombre de Usuario</b></label> <input
+					th:field="*{username}" type="text" placeholder="Ingrese
+usuario">
+				<span th:errors="*{username}" class="error"></span>
+			</div>
+			<div>
+				<label th:for="*{email}"><b>Correo</b></label> <input
+					th:field="*{email}" type="text" placeholder="Ingrese correo">
+				<span th:errors="*{email}" class="error"></span>
+			</div>
+			<div>
+				<label th:for="*{password}"><b>Contraseña</b></label> <input
+					th:field="*{password}" type="password"
+					placeholder="ingrese
+contraseña"> <span
+					th:errors="*{password}" class="error"></span>
+			</div>
+			<div class="clearfix">
+				<button type="button" class="cancelbtn"
+					style="width: 19rem; float: left;">Cancel</button>
+				<button type="submit" class="signupbtn"
+					style="width: 19rem; float: right;">Sign Up</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
