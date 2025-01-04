@@ -1,0 +1,55 @@
+package com.edutecno.direccionandoRol.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+/* este codigo es para Java 8. */
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	private AuthenticationSuccessHandler authenticationSuccesHandler;
+	@Autowired
+	private UserDetailsService userService;
+
+	@Autowired
+	public WebSecurityConfig(AuthenticationSuccessHandler authenticationSuccesHandler) {
+		this.authenticationSuccesHandler = authenticationSuccesHandler;
+	}
+
+	@Override
+	public void configure(AuthenticationManagerBuilder amb) throws Exception {
+		amb.userDetailsService(userService).passwordEncoder(passwordEncoder());
+	}
+
+	/* Metodo principal, el filtro general */
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		// se deshabilita el csrf
+		http.csrf().disable()
+				// antMatchers, a /admin/ solo puede entrear con autorizacion de ADMIN
+				.authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN")
+				// antMatcher, a /client/ sol puede entrar con autorizacion de CLIENT
+				.antMatchers("/client/**").hasAuthority("CLIENT")
+				// antMatches, a /login/ todos pueden entrar 
+				.antMatchers("/login").permitAll().anyRequest()
+				.authenticated()
+				// metodo de login por formuladio a /login, en caso de exito a authenticationSuccesHandler
+				.and().formLogin().loginPage("/login").successHandler(authenticationSuccesHandler)
+				// en caso de error, va a pagina de error.
+				.failureUrl("/login?error=true")
+				// parametros email y password
+				.usernameParameter("email").passwordParameter("password").and()
+				// en caso de login fallido, acceso denegado
+				.exceptionHandling().accessDeniedPage("/prohibido");
+	}
+
+	@Bean
+	BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+}
