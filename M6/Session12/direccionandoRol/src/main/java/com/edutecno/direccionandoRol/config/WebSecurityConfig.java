@@ -28,6 +28,7 @@ public class WebSecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
 		.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+		
 		// Autorizaciones
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/admin/**").hasAuthority("ADMIN")
