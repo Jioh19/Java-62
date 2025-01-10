@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import com.edutecno.api.dao.UsuarioDao;
 import com.edutecno.api.model.Usuario;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
+@Slf4j
 public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired
@@ -18,12 +21,14 @@ public class UsuarioServiceImpl implements UsuarioService{
 	
 	@Override
 	public List<Usuario> listar() {
+		log.info("Mostrando a todos los usuarios", dao.findAll());
 		return dao.findAll();
 	}
 
 	@Override
 	public void agregar(Usuario usuario) {
 		dao.save(usuario);
+		log.info("Creando un nuevo usuario: {}", usuario);
 	}
 
 	@Override
