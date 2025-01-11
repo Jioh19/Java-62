@@ -23,17 +23,17 @@ public class LoginController {
 	@Autowired
 	private AuthService authService;
 
-	@PostMapping("/auth/login")
-	public ResponseEntity<?> login(@Valid @RequestBody UsuarioLoginDto loginDTO) {
-		try {
-			System.out.println("ENTRAMOS!!!!");
-			Usuario usuario = authService.autenticar(loginDTO);
-			// Aquí podrías generar un token JWT si lo necesitas
-			return ResponseEntity.ok(usuario);
-		} catch (BadCredentialsException e) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
-		}
-	}
+//	@PostMapping("/auth/login")
+//	public ResponseEntity<?> login(@Valid @RequestBody UsuarioLoginDto loginDTO) {
+//		try {
+//			System.out.println("ENTRAMOS!!!!");
+//			Usuario usuario = authService.autenticar(loginDTO);
+//			// Aquí podrías generar un token JWT si lo necesitas
+//			return ResponseEntity.ok(usuario);
+//		} catch (BadCredentialsException e) {
+//			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+//		}
+//	}
 
 	@PostMapping("/registro")
 	public ResponseEntity<?> registro(@Valid @RequestBody UsuarioRegisterDto registroDTO) {
@@ -47,7 +47,7 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String login(Model model) {
-		model.addAttribute("usuarioDto", new UsuarioLoginDto());
+		model.addAttribute("usuarioDto", new Usuario());
 		return "login";
 	}
 

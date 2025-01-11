@@ -30,7 +30,7 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Usuario autenticar(UsuarioLoginDto loginDTO) {
+    public Usuario autenticar(Usuario loginDTO) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

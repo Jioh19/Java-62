@@ -1,0 +1,5 @@
+security:
+  jwt:
+    token:
+      secret-key: P3T-K3Y
+      expire-length: 3600000
