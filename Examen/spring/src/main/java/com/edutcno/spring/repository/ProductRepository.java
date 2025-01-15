@@ -5,25 +5,20 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import com.edutcno.spring.dto.ProductDto;
 import com.edutcno.spring.model.Product;
 
-public interface ProductRepository extends JpaRepository<Product, Integer>{
-
-	List<Product> findByStoreIdAndCategoryIdAndBrandId(
-	        Integer storeId, Integer categoryId, Integer brandId);
-	
-//	@Query("select new com.edutcno.spring.dto(st.store_name, "
-//			+ "p.product_id, p.product_name, s.quantity) "
-//			+ "from products as p "
-//			+ "inner join categories as c "
-//			+ "on c.category_id = p.category_id "
-//			+ "inner join brands as b "
-//			+ "on b.brand_id = p.brand_id "
-//			+ "inner join stocks as s "
-//			+ "on s.product_id = p.product_id "
-//			+ "inner join stores as st "
-//			+ "on st.store_id = s.store_id ")
-//	List<ProductDto> filtrarTodo();
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+    @Query("SELECT p FROM Product p " +
+           "LEFT JOIN Stock s ON s.product = p " +
+           "WHERE (:storeId IS NULL OR s.store.storeId = :storeId) " +
+           "AND (:categoryId IS NULL OR p.category.categoryId = :categoryId) " +
+           "AND (:brandId IS NULL OR p.brand.brandId = :brandId)")
+    List<Product> findProductsWithFilters(
+        @Param("storeId") Integer storeId,
+        @Param("categoryId") Integer categoryId,
+        @Param("brandId") Integer brandId
+    );
 }
